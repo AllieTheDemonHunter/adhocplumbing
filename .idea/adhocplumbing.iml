@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="WEB_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/SpryAssets" />
+      <excludeFolder url="file://$MODULE_DIR$/_mmServerScripts" />
+      <excludeFolder url="file://$MODULE_DIR$/_notes" />
+      <excludeFolder url="file://$MODULE_DIR$/design" />
+      <excludeFolder url="file://$MODULE_DIR$/user_data" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library">
+      <library name="PHP">
+        <CLASSES>
+          <root url="file:///Applications/MAMP/bin/php/php5.4.4/lib/php" />
+        </CLASSES>
+        <SOURCES>
+          <root url="file:///Applications/MAMP/bin/php/php5.4.4/lib/php" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+  </component>
+</module>
+

@@ -1,0 +1,7 @@
+.idea*
+vendor/*
+docs/*
+_*
+Spry*
+design/*
+user_data/*

@@ -1,0 +1,82 @@
+@charset "utf-8";
+body {
+	font-family: Calibri, Verdana, Arial;
+	font-size: 14px;
+	background-color: white;
+	text-transform: uppercase;
+}
+td {
+	vertical-align: top;
+}
+td#logo-container {
+    position: relative;
+    background-repeat: no-repeat;
+    height: 140px;
+}
+h1.case-number {
+	position: absolute;
+	right: -25px;
+	bottom: 32px;
+	font-size: 2.5em;
+	margin: 0;
+}
+table#main-table {
+	border: 1px solid gray;
+	padding: 10px;
+	border-radius: 2px;
+}
+div.large-container {
+	border: none;
+	border-radius: 0;
+	margin: 0px;
+	padding: 0;
+	background-color: white;
+}
+th {
+	background: #D5D5D5;
+}
+.large-container td, th {
+	border: 1px solid black;
+}
+.large-container table {
+	width: 100%;
+}
+.large-container tr:nth-child(odd) {
+	background-color: #EEEEEE;
+}
+.large-container tr:nth-child(even) {
+   background-color: #E1E1E1;
+}
+.large-container td {
+	padding: 5px;
+}
+.large-container table {
+	border-collapse: collapse;
+}
+.large-container td:nth-child(even) {
+	border-left: 1px solid gray;
+}
+#excess-amount {
+	color: red;
+}
+#excess-amount {
+	color: black;
+	border: none;
+	margin-top: 11px;
+	padding: 0;
+	border-radius: 0;
+	font-size: 1.4em;
+	font-weight: bold;
+	text-decoration: underline;
+	position: absolute;
+	overflow: visible;
+	width: 500px;
+	top: 151px;
+	left: 21px;
+}
+#jobcard-title-block {
+	padding-left: 84px;
+}
+.large-container > h3 {
+	text-align: center;
+}

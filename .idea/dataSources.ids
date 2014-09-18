@@ -1,0 +1,617 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source source="LOCAL" name="MySQL - adhoc_adhocpanmv_db2@localhost" uuid="448ede6e-05f0-4d6a-a7fe-9cccd06b2d6e">
+    <database-info product="MySQL" version="5.5.25" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.31 ( Revision: alexander.soklakov@oracle.com-20140520065950-groqzzbvxprqdmnz )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="mixed" quoted-identifiers="upper"/>
+    <schema name="" catalog="adhoc_adhocpanmv_db2"/>
+    <table name="acc_vehicle" schema="" catalog="adhoc_adhocpanmv_db2" type="TABLE">
+      <column name="vehID" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="accID" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="regno" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="make" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="colour" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="dname" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="dtelno" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="dcellno" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="dliquor" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="passengers" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="relationship" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="position" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="safety_belt" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="vehID"/>
+    </table>
+    <table name="accesslevels" schema="" catalog="adhoc_adhocpanmv_db2" type="TABLE">
+      <column name="accesslevelID" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="accesslevel" sqlType="VARCHAR" length="15" precision="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="accesslevelID"/>
+    </table>
+    <table name="accident" schema="" catalog="adhoc_adhocpanmv_db2" type="TABLE">
+      <column name="accID" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="case_no" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="acc_type" sqlType="VARCHAR" length="5" precision="0" nullable="true" jdbcType="12"/>
+      <column name="timestamp" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="location" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="street" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="extention" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="town" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="saps" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="traffic" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="notes" sqlType="LONGTEXT" length="2147483647" precision="0" nullable="true" jdbcType="-1"/>
+      <primary-key name="PRIMARY" columns="accID"/>
+    </table>
+    <table name="addresses" schema="" catalog="adhoc_adhocpanmv_db2" type="TABLE">
+      <column name="addressID" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="clientID" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="unitno" sqlType="VARCHAR" length="8" precision="0" nullable="true" jdbcType="12"/>
+      <column name="complex" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="streetno" sqlType="VARCHAR" length="8" precision="0" nullable="true" jdbcType="12"/>
+      <column name="street" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="suburb" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="region" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="province" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="ctype" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="cstatus" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="added" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="lastupdate" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="category" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="contactperson" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="contactnos" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="addressID"/>
+    </table>
+    <table name="call_log" schema="" catalog="adhoc_adhocpanmv_db2" type="TABLE">
+      <column name="logID" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="job_no" sqlType="VARCHAR" length="15" precision="0" nullable="true" jdbcType="12"/>
+      <column name="logtime" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="caller" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="dispatcher" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="telno1" sqlType="VARCHAR" length="15" precision="0" nullable="true" jdbcType="12"/>
+      <column name="telno2" sqlType="VARCHAR" length="15" precision="0" nullable="true" jdbcType="12"/>
+      <column name="telno3" sqlType="VARCHAR" length="15" precision="0" nullable="true" jdbcType="12"/>
+      <column name="addressID" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="clientID" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="location" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="condition" sqlType="LONGTEXT" length="2147483647" precision="0" nullable="true" jdbcType="-1"/>
+      <column name="medaid" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="medaidno" sqlType="VARCHAR" length="15" precision="0" nullable="true" jdbcType="12"/>
+      <column name="vehicle1" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="vehicle2" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="vehicle3" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="v1crew1" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="v1crew2" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="v1crew3" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="v2crew1" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="v2crew2" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="v2crew3" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="v3crew1" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="v3crew2" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="v3crew3" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="service" sqlType="VARCHAR" length="25" precision="0" nullable="true" jdbcType="12"/>
+      <column name="prf_no" sqlType="VARCHAR" length="15" precision="0" nullable="true" jdbcType="12"/>
+      <column name="notes" sqlType="LONGTEXT" length="2147483647" precision="0" nullable="true" jdbcType="-1"/>
+      <column name="patch_notes" sqlType="LONGTEXT" length="2147483647" precision="0" nullable="true" jdbcType="-1"/>
+      <column name="cons_notes" sqlType="LONGTEXT" length="2147483647" precision="0" nullable="true" jdbcType="-1"/>
+      <column name="capturer" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="calltype" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="tfrtime" sqlType="VARCHAR" length="15" precision="0" nullable="true" jdbcType="12"/>
+      <column name="medauthno" sqlType="VARCHAR" length="15" precision="0" nullable="true" jdbcType="12"/>
+      <column name="medauthperson" sqlType="VARCHAR" length="15" precision="0" nullable="true" jdbcType="12"/>
+      <column name="tfrfrom" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="fromother" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="wardfrom" sqlType="VARCHAR" length="10" precision="0" nullable="true" jdbcType="12"/>
+      <column name="drfrom" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="drfromtelno" sqlType="VARCHAR" length="30" precision="0" nullable="true" jdbcType="12"/>
+      <column name="tfrto" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="toother" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="wardto" sqlType="VARCHAR" length="10" precision="0" nullable="true" jdbcType="12"/>
+      <column name="drto" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="drtotelno" sqlType="VARCHAR" length="30" precision="0" nullable="true" jdbcType="12"/>
+      <column name="patient" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="carelevel" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="priority" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="attachments" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="medicine" sqlType="LONGTEXT" length="2147483647" precision="0" nullable="true" jdbcType="-1"/>
+      <column name="als_supervise" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="call_status" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="sms_sent" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4" def="MA=="/>
+      <column name="give_away" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="given_to" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="reason" sqlType="VARCHAR" length="100" precision="0" nullable="true" jdbcType="12"/>
+      <column name="auth_by" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="quote_amt" sqlType="DOUBLE" length="11" precision="2" nullable="true" jdbcType="8"/>
+      <column name="quote_no" sqlType="VARCHAR" length="15" precision="0" nullable="true" jdbcType="12"/>
+      <column name="invoiced" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="invoice_no" sqlType="VARCHAR" length="15" precision="0" nullable="true" jdbcType="12"/>
+      <column name="inv_amt" sqlType="DOUBLE" length="22" precision="0" nullable="true" jdbcType="8"/>
+      <column name="paid" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="paiddate" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="order_no" sqlType="VARCHAR" length="15" precision="0" nullable="true" jdbcType="12"/>
+      <column name="policy_no" sqlType="VARCHAR" length="15" precision="0" nullable="true" jdbcType="12"/>
+      <column name="claim_no" sqlType="VARCHAR" length="15" precision="0" nullable="true" jdbcType="12"/>
+      <column name="reference_no" sqlType="VARCHAR" length="15" precision="0" nullable="true" jdbcType="12"/>
+      <column name="despatched" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="est_fin_time" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="logged_by" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="seq_no" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="job_complete" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4" def="MA=="/>
+      <column name="other" sqlType="LONGTEXT" length="2147483647" precision="0" nullable="true" jdbcType="-1"/>
+      <column name="jobcard_no" sqlType="VARCHAR" length="15" precision="0" nullable="true" jdbcType="12"/>
+      <column name="diary" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4" def="MA=="/>
+      <column name="read" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4" def="MA=="/>
+      <column name="ins_receipt_no" sqlType="VARCHAR" length="15" precision="0" nullable="true" jdbcType="12"/>
+      <column name="access_amt" sqlType="DOUBLE" length="22" precision="0" nullable="true" jdbcType="8" def="MA=="/>
+      <column name="access_pmt_method" sqlType="VARCHAR" length="25" precision="0" nullable="true" jdbcType="12"/>
+      <column name="actual_job" sqlType="LONGTEXT" length="2147483647" precision="0" nullable="true" jdbcType="-1"/>
+      <column name="geyser" sqlType="LONGTEXT" length="2147483647" precision="0" nullable="true" jdbcType="-1"/>
+      <column name="patch_work" sqlType="VARCHAR" length="150" precision="0" nullable="true" jdbcType="12"/>
+      <column name="cons_damage" sqlType="LONGTEXT" length="2147483647" precision="0" nullable="true" jdbcType="-1"/>
+      <column name="comeback" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4" def="MA=="/>
+      <column name="resched_reason" sqlType="VARCHAR" length="150" precision="0" nullable="true" jdbcType="12"/>
+      <column name="control_screen" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4" def="MQ=="/>
+      <column name="jobcard_checked" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="time_spent" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="time_spent_ot" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="logID"/>
+    </table>
+    <table name="call_log_bak" schema="" catalog="adhoc_adhocpanmv_db2" type="TABLE">
+      <column name="logID" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="logtime" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="caller" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="dispatcher" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="telno1" sqlType="VARCHAR" length="15" precision="0" nullable="true" jdbcType="12"/>
+      <column name="telno2" sqlType="VARCHAR" length="15" precision="0" nullable="true" jdbcType="12"/>
+      <column name="telno3" sqlType="VARCHAR" length="15" precision="0" nullable="true" jdbcType="12"/>
+      <column name="addressID" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="clientID" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="location" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="condition" sqlType="LONGTEXT" length="2147483647" precision="0" nullable="true" jdbcType="-1"/>
+      <column name="medaid" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="medaidno" sqlType="VARCHAR" length="15" precision="0" nullable="true" jdbcType="12"/>
+      <column name="vehicle1" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="vehicle2" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="vehicle3" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="v1crew1" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="v1crew2" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="v1crew3" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="v2crew1" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="v2crew2" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="v2crew3" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="v3crew1" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="v3crew2" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="v3crew3" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="service" sqlType="VARCHAR" length="25" precision="0" nullable="true" jdbcType="12"/>
+      <column name="v1t1" sqlType="VARCHAR" length="15" precision="0" nullable="true" jdbcType="12"/>
+      <column name="v1km1" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="v1t2" sqlType="VARCHAR" length="15" precision="0" nullable="true" jdbcType="12"/>
+      <column name="v1km2" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="v1t3" sqlType="VARCHAR" length="15" precision="0" nullable="true" jdbcType="12"/>
+      <column name="v1km3" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="v1t4" sqlType="VARCHAR" length="15" precision="0" nullable="true" jdbcType="12"/>
+      <column name="v1km4" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="v1t5" sqlType="VARCHAR" length="15" precision="0" nullable="true" jdbcType="12"/>
+      <column name="v1km5" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="v1t6" sqlType="VARCHAR" length="15" precision="0" nullable="true" jdbcType="12"/>
+      <column name="v1km6" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="v2t1" sqlType="VARCHAR" length="15" precision="0" nullable="true" jdbcType="12"/>
+      <column name="v2km1" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="v2t2" sqlType="VARCHAR" length="15" precision="0" nullable="true" jdbcType="12"/>
+      <column name="v2km2" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="v2t3" sqlType="VARCHAR" length="15" precision="0" nullable="true" jdbcType="12"/>
+      <column name="v2km3" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="v2t4" sqlType="VARCHAR" length="15" precision="0" nullable="true" jdbcType="12"/>
+      <column name="v2km4" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="v2t5" sqlType="VARCHAR" length="15" precision="0" nullable="true" jdbcType="12"/>
+      <column name="v2km5" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="v2t6" sqlType="VARCHAR" length="15" precision="0" nullable="true" jdbcType="12"/>
+      <column name="v2km6" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="v3t1" sqlType="VARCHAR" length="15" precision="0" nullable="true" jdbcType="12"/>
+      <column name="v3km1" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="v3t2" sqlType="VARCHAR" length="15" precision="0" nullable="true" jdbcType="12"/>
+      <column name="v3km2" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="v3t3" sqlType="VARCHAR" length="15" precision="0" nullable="true" jdbcType="12"/>
+      <column name="v3km3" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="v3t4" sqlType="VARCHAR" length="15" precision="0" nullable="true" jdbcType="12"/>
+      <column name="v3km4" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="v3t5" sqlType="VARCHAR" length="15" precision="0" nullable="true" jdbcType="12"/>
+      <column name="v3km5" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="v3t6" sqlType="VARCHAR" length="15" precision="0" nullable="true" jdbcType="12"/>
+      <column name="v3km6" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="prf_no" sqlType="VARCHAR" length="15" precision="0" nullable="true" jdbcType="12"/>
+      <column name="notes" sqlType="LONGTEXT" length="2147483647" precision="0" nullable="true" jdbcType="-1"/>
+      <column name="capturer" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="calltype" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="tfrtime" sqlType="VARCHAR" length="15" precision="0" nullable="true" jdbcType="12"/>
+      <column name="medauthno" sqlType="VARCHAR" length="15" precision="0" nullable="true" jdbcType="12"/>
+      <column name="medauthperson" sqlType="VARCHAR" length="15" precision="0" nullable="true" jdbcType="12"/>
+      <column name="tfrfrom" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="fromother" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="wardfrom" sqlType="VARCHAR" length="10" precision="0" nullable="true" jdbcType="12"/>
+      <column name="drfrom" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="drfromtelno" sqlType="VARCHAR" length="30" precision="0" nullable="true" jdbcType="12"/>
+      <column name="tfrto" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="toother" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="wardto" sqlType="VARCHAR" length="10" precision="0" nullable="true" jdbcType="12"/>
+      <column name="drto" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="drtotelno" sqlType="VARCHAR" length="30" precision="0" nullable="true" jdbcType="12"/>
+      <column name="patient" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="carelevel" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="priority" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="attachments" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="medicine" sqlType="LONGTEXT" length="2147483647" precision="0" nullable="true" jdbcType="-1"/>
+      <column name="als_supervise" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="call_status" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="sms_sent" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4" def="MA=="/>
+      <column name="give_away" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="given_to" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="reason" sqlType="VARCHAR" length="100" precision="0" nullable="true" jdbcType="12"/>
+      <column name="auth_by" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="quote_amt" sqlType="DOUBLE" length="10" precision="2" nullable="true" jdbcType="8"/>
+      <column name="quote_no" sqlType="VARCHAR" length="15" precision="0" nullable="true" jdbcType="12"/>
+      <column name="invoiced" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="invoice_no" sqlType="VARCHAR" length="15" precision="0" nullable="true" jdbcType="12"/>
+      <column name="inv_amt" sqlType="DOUBLE" length="22" precision="0" nullable="true" jdbcType="8"/>
+      <column name="paid" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="paiddate" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="order_no" sqlType="VARCHAR" length="15" precision="0" nullable="true" jdbcType="12"/>
+      <column name="policy_no" sqlType="VARCHAR" length="15" precision="0" nullable="true" jdbcType="12"/>
+      <column name="claim_no" sqlType="VARCHAR" length="15" precision="0" nullable="true" jdbcType="12"/>
+      <column name="reference_no" sqlType="VARCHAR" length="15" precision="0" nullable="true" jdbcType="12"/>
+      <column name="despatched" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="est_fin_time" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="logged_by" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="seq_no" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="job_complete" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4" def="MA=="/>
+      <column name="other" sqlType="LONGTEXT" length="2147483647" precision="0" nullable="true" jdbcType="-1"/>
+      <column name="jobcard_no" sqlType="VARCHAR" length="15" precision="0" nullable="true" jdbcType="12"/>
+      <column name="diary" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4" def="MA=="/>
+      <column name="read" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4" def="MA=="/>
+      <primary-key name="PRIMARY" columns="logID"/>
+    </table>
+    <table name="call_statuses" schema="" catalog="adhoc_adhocpanmv_db2" type="TABLE">
+      <column name="statusID" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="status" sqlType="VARCHAR" length="25" precision="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="statusID"/>
+    </table>
+    <table name="call_types" schema="" catalog="adhoc_adhocpanmv_db2" type="TABLE">
+      <column name="typeID" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="calltype" sqlType="VARCHAR" length="15" precision="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="typeID"/>
+    </table>
+    <table name="care_levels" schema="" catalog="adhoc_adhocpanmv_db2" type="TABLE">
+      <column name="levelID" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="carelevel" sqlType="VARCHAR" length="15" precision="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="levelID"/>
+    </table>
+    <table name="categories" schema="" catalog="adhoc_adhocpanmv_db2" type="TABLE">
+      <column name="catID" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="category" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="catID"/>
+    </table>
+    <table name="clients" schema="" catalog="adhoc_adhocpanmv_db2" type="TABLE">
+      <column name="clientID" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="clientno" sqlType="VARCHAR" length="10" precision="0" nullable="true" jdbcType="12"/>
+      <column name="cname" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="surname" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="telno" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="cellno" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="faxno" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="cemail" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="postal" sqlType="LONGTEXT" length="2147483647" precision="0" nullable="true" jdbcType="-1"/>
+      <column name="status" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="category" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="paymethod" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="whereheard" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="lastupdated" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="flagged" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="flagdetail" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="idno" sqlType="VARCHAR" length="15" precision="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="clientID"/>
+    </table>
+    <table name="comments" schema="" catalog="adhoc_adhocpanmv_db2" type="TABLE">
+      <column name="commentID" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="callID" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="logtime" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="logged_by" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="comment" sqlType="LONGTEXT" length="2147483647" precision="0" nullable="true" jdbcType="-1"/>
+      <primary-key name="PRIMARY" columns="commentID"/>
+    </table>
+    <table name="correspondence" schema="" catalog="adhoc_adhocpanmv_db2" type="TABLE">
+      <column name="commentID" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="callID" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="logtime" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="logged_by" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="comment" sqlType="LONGTEXT" length="2147483647" precision="0" nullable="true" jdbcType="-1"/>
+      <primary-key name="PRIMARY" columns="commentID"/>
+    </table>
+    <table name="crews" schema="" catalog="adhoc_adhocpanmv_db2" type="TABLE">
+      <column name="crewID" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="crew" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="nickname" sqlType="VARCHAR" length="15" precision="0" nullable="true" jdbcType="12"/>
+      <column name="hpcsa_no" sqlType="VARCHAR" length="15" precision="0" nullable="true" jdbcType="12"/>
+      <column name="cellno" sqlType="VARCHAR" length="11" precision="0" nullable="true" jdbcType="12"/>
+      <column name="regionID" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="booked_until" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4" def="MA=="/>
+      <primary-key name="PRIMARY" columns="crewID"/>
+    </table>
+    <table name="fuelman" schema="" catalog="adhoc_adhocpanmv_db2" type="TABLE">
+      <column name="fuelID" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="timestamp" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="ob_no" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="vehicleID" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="person" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="km" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="card_no" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="litres" sqlType="DOUBLE" length="6" precision="2" nullable="true" jdbcType="8"/>
+      <column name="oil" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="value" sqlType="DOUBLE" length="8" precision="2" nullable="true" jdbcType="8"/>
+      <primary-key name="PRIMARY" columns="fuelID"/>
+    </table>
+    <table name="hospitals" schema="" catalog="adhoc_adhocpanmv_db2" type="TABLE">
+      <column name="hospitalID" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="hospital" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="location" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="hospitalID"/>
+    </table>
+    <table name="jobs" schema="" catalog="adhoc_adhocpanmv_db2" type="VIEW">
+      <column name="date" sqlType="VARCHAR" length="10" precision="0" nullable="true" jdbcType="12"/>
+      <column name="client_name" sqlType="VARCHAR" length="91" precision="0" nullable="true" jdbcType="12"/>
+      <column name="crew_name" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="service" sqlType="VARCHAR" length="25" precision="0" nullable="true" jdbcType="12"/>
+      <column name="comeback" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4" def="MA=="/>
+      <column name="calltype" sqlType="VARCHAR" length="15" precision="0" nullable="true" jdbcType="12"/>
+      <column name="actual_job" sqlType="LONGTEXT" length="2147483647" precision="0" nullable="true" jdbcType="-1"/>
+    </table>
+    <table name="locations" schema="" catalog="adhoc_adhocpanmv_db2" type="TABLE">
+      <column name="locationID" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="location" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="locationID"/>
+    </table>
+    <table name="log" schema="" catalog="adhoc_adhocpanmv_db2" type="TABLE">
+      <column name="logID" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="userID" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="timestamp" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="page" sqlType="VARCHAR" length="150" precision="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="logID"/>
+    </table>
+    <table name="med_aids" schema="" catalog="adhoc_adhocpanmv_db2" type="TABLE">
+      <column name="aidID" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="aidname" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="ambu_co" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="despatch" sqlType="VARCHAR" length="10" precision="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="aidID"/>
+    </table>
+    <table name="mines" schema="" catalog="adhoc_adhocpanmv_db2" type="TABLE">
+      <column name="mineID" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="locationID" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="mine" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="branch" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="shaft" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="gps" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="gps2" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="mineID"/>
+    </table>
+    <table name="nature_of_call" schema="" catalog="adhoc_adhocpanmv_db2" type="TABLE">
+      <column name="natureID" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="nature" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="timereqd" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="natureID"/>
+    </table>
+    <table name="pdfs" schema="" catalog="adhoc_adhocpanmv_db2" type="TABLE">
+      <column name="pdfID" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="pdfname" sqlType="VARCHAR" length="30" precision="0" nullable="false" jdbcType="12"/>
+      <column name="case_no" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="pdfID"/>
+    </table>
+    <table name="photos" schema="" catalog="adhoc_adhocpanmv_db2" type="TABLE">
+      <column name="photoID" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="filename" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="logID" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="caption" sqlType="VARCHAR" length="100" precision="0" nullable="true" jdbcType="12"/>
+      <column name="status" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="photoID"/>
+    </table>
+    <table name="prf" schema="" catalog="adhoc_adhocpanmv_db2" type="TABLE">
+      <column name="prfID" sqlType="VARCHAR" length="20" precision="0" nullable="false" jdbcType="12"/>
+      <column name="inv_no" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="primary" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="trauma" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="bls" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="iht" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="medical" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="als" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="ils" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="c_name" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="c_id" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="c_age" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="c_sex" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="c_from" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="c_to" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="c_physical" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="c_postal" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="c_handoverto" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="c_receiving" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="r_id" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="c_tel" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="med_aid" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="med_aid_no" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="med_principal" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="med_relationship" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="employer" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="emp_tel" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="emp_address" sqlType="LONGTEXT" length="2147483647" precision="0" nullable="true" jdbcType="-1"/>
+      <column name="h_dispatcher" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="h_dispatch_info" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="h_on_arrival" sqlType="LONGTEXT" length="2147483647" precision="0" nullable="true" jdbcType="-1"/>
+      <column name="h_main_complaint" sqlType="LONGTEXT" length="2147483647" precision="0" nullable="true" jdbcType="-1"/>
+      <column name="ph_allergies" sqlType="LONGTEXT" length="2147483647" precision="0" nullable="true" jdbcType="-1"/>
+      <column name="ph_medication" sqlType="LONGTEXT" length="2147483647" precision="0" nullable="true" jdbcType="-1"/>
+      <column name="ph_med_surg" sqlType="LONGTEXT" length="2147483647" precision="0" nullable="true" jdbcType="-1"/>
+      <column name="ph_lastmeal" sqlType="LONGTEXT" length="2147483647" precision="0" nullable="true" jdbcType="-1"/>
+      <column name="ps_air_clear" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="ps_air_maint" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="ps_air_intub" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="ps_air_surg" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="ps_air_ett" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="ps_air_depth" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="ps_trachea" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="ps_air_entry" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="ps_extra_sounds" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="ps_mechanics" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="ps_neck_veins" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="ps_haemorrhage" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="ps_perfusion" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="ps_perf_colour" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="ps_pulses" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="ps_initial_gcs_15" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="ps_initial_e_4" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="ps_initial_m_6" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="ps_initial_v_5" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="ps_spinal_motor" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="ps_spinal_sensory" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="ss_head_neck" sqlType="LONGTEXT" length="2147483647" precision="0" nullable="true" jdbcType="-1"/>
+      <column name="ss_chest" sqlType="LONGTEXT" length="2147483647" precision="0" nullable="true" jdbcType="-1"/>
+      <column name="ss_cvs" sqlType="LONGTEXT" length="2147483647" precision="0" nullable="true" jdbcType="-1"/>
+      <column name="ss_abdomen" sqlType="LONGTEXT" length="2147483647" precision="0" nullable="true" jdbcType="-1"/>
+      <column name="ss_pelvis" sqlType="LONGTEXT" length="2147483647" precision="0" nullable="true" jdbcType="-1"/>
+      <column name="ss_extremities" sqlType="LONGTEXT" length="2147483647" precision="0" nullable="true" jdbcType="-1"/>
+      <column name="ss_spine" sqlType="LONGTEXT" length="2147483647" precision="0" nullable="true" jdbcType="-1"/>
+      <column name="ss_icd_10" sqlType="LONGTEXT" length="2147483647" precision="0" nullable="true" jdbcType="-1"/>
+      <column name="ss_diagnosis" sqlType="LONGTEXT" length="2147483647" precision="0" nullable="true" jdbcType="-1"/>
+      <column name="ss_priority" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="management" sqlType="LONGTEXT" length="2147483647" precision="0" nullable="true" jdbcType="-1"/>
+      <column name="fluid_blood" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="fluid_secretions" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="fluid_enteric" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="fluid_drains" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="fluid_urine" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="fluid_total" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="ecg_analysis" sqlType="LONGTEXT" length="2147483647" precision="0" nullable="true" jdbcType="-1"/>
+      <column name="ecg_defib" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="ecg_pacing" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="ecg_time1" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="ecg_joules1" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="ecg_time2" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="ecg_joules2" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="ecg_time3" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="ecg_joules3" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="ecg_time" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="ecg_rate" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="ecg_ma" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="al_logroll" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="al_veh_ex" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="al_spineboard" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="al_scoop" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="al_cerv_collar" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="al_headblocks" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="al_spider" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="al_ked" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="air_suction" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="air_oro" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="air_oral" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="air_nasal" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="air_surgical" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="br_oxygen" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="br_60" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="br_neb" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="br_nasal" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="br_chest" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="br_underwater" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="br_heimlich" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="cir_ecg" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="cir_iv" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="cir_io" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="cir_hicap" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="cir_pacing" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="cir_cpr" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="cir_colloids" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="cir_dial" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="oth_urine" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="oth_gastric" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="oth_stretcher" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="oth_wheelchair" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="personnel_items" sqlType="LONGTEXT" length="2147483647" precision="0" nullable="true" jdbcType="-1"/>
+      <primary-key name="PRIMARY" columns="prfID"/>
+    </table>
+    <table name="priorities" schema="" catalog="adhoc_adhocpanmv_db2" type="TABLE">
+      <column name="pID" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="priority" sqlType="VARCHAR" length="15" precision="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="pID"/>
+    </table>
+    <table name="provinces" schema="" catalog="adhoc_adhocpanmv_db2" type="TABLE">
+      <column name="provinceID" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="pshort" sqlType="VARCHAR" length="3" precision="0" nullable="true" jdbcType="12"/>
+      <column name="province" sqlType="VARCHAR" length="30" precision="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="provinceID"/>
+    </table>
+    <table name="regions" schema="" catalog="adhoc_adhocpanmv_db2" type="TABLE">
+      <column name="regionID" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="region" sqlType="VARCHAR" length="30" precision="0" nullable="false" jdbcType="12"/>
+      <column name="provinceID" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <column name="active" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4" def="MA=="/>
+      <column name="prefix" sqlType="VARCHAR" length="6" precision="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="regionID"/>
+    </table>
+    <table name="statuses" schema="" catalog="adhoc_adhocpanmv_db2" type="TABLE">
+      <column name="statusID" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="status" sqlType="VARCHAR" length="15" precision="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="statusID"/>
+      <index name="status" unique="true" columns="status"/>
+    </table>
+    <table name="subregions" schema="" catalog="adhoc_adhocpanmv_db2" type="TABLE">
+      <column name="subID" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="subregion" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="subID"/>
+    </table>
+    <table name="suburbs" schema="" catalog="adhoc_adhocpanmv_db2" type="TABLE">
+      <column name="suburbID" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="suburb" sqlType="VARCHAR" length="30" precision="0" nullable="false" jdbcType="12"/>
+      <column name="regionID" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <column name="latitude" sqlType="DOUBLE" length="6" precision="2" nullable="true" jdbcType="8"/>
+      <column name="longitude" sqlType="DOUBLE" length="6" precision="2" nullable="true" jdbcType="8"/>
+      <column name="subregion" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="suburbID"/>
+    </table>
+    <table name="users" schema="" catalog="adhoc_adhocpanmv_db2" type="TABLE">
+      <column name="userID" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="uname" sqlType="VARCHAR" length="50" precision="0" nullable="false" jdbcType="12"/>
+      <column name="pword" sqlType="VARCHAR" length="15" precision="0" nullable="false" jdbcType="12"/>
+      <column name="uemail" sqlType="VARCHAR" length="100" precision="0" nullable="true" jdbcType="12"/>
+      <column name="ucell" sqlType="VARCHAR" length="15" precision="0" nullable="true" jdbcType="12"/>
+      <column name="accesslevel" sqlType="TINYINT" length="3" precision="0" nullable="false" jdbcType="-6" def="MQ=="/>
+      <column name="status" sqlType="TINYINT" length="3" precision="0" nullable="false" jdbcType="-6" def="MQ=="/>
+      <column name="otp" sqlType="VARCHAR" length="15" precision="0" nullable="false" jdbcType="12"/>
+      <column name="otpexpiry" sqlType="VARCHAR" length="15" precision="0" nullable="true" jdbcType="12"/>
+      <column name="fullname" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="region" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="mo_f" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="mo_t" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="tu_f" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="tu_t" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="we_f" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="we_t" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="th_f" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="th_t" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="fr_f" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="fr_t" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="sa_f" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="sa_t" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="su_f" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="su_t" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="userID"/>
+      <index name="uemail" unique="true" columns="uemail"/>
+      <index name="uname" unique="true" columns="uname"/>
+    </table>
+    <table name="vehicles" schema="" catalog="adhoc_adhocpanmv_db2" type="TABLE">
+      <column name="vehicleID" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="vehicle" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="branchID" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="cellno" sqlType="VARCHAR" length="11" precision="0" nullable="true" jdbcType="12"/>
+      <column name="regno" sqlType="VARCHAR" length="15" precision="0" nullable="true" jdbcType="12"/>
+      <column name="regionID" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="booked_until" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4" def="MA=="/>
+      <primary-key name="PRIMARY" columns="vehicleID"/>
+    </table>
+  </data-source>
+</component>
