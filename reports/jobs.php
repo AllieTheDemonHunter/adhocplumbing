@@ -21,6 +21,7 @@ class report {
     public $report_type_select_html;
     protected $compare_types;
     public $compare_types_select_html;
+    public $province_id;
 
     public function __construct($start_date = NULL, $end_date = NULL) {
         $this->dbcon = mysqli_connect($this->hostname, $this->username, $this->password, $this->database);
@@ -84,11 +85,12 @@ class report {
      */
     public function getMinDate () {
         //Using the predefined view.
-        $sql = "SELECT MIN(`date`) AS `min_date` FROM `jobs`";
+        $sql = "SELECT MIN(date) AS min_date FROM jobs";
         if ($stmt = $this->dbcon->prepare($sql)) {
             $stmt->execute();
             $stmt->bind_result($this->min_date);
             $stmt->fetch();
+            $stmt->close();
             return $this;
         }
     }
@@ -214,8 +216,9 @@ class jobs extends report {
     public $jobs_values;
     public $crew;
     public $client;
+    public $area = NULL;
 
-    public function __construct($label = NULL, $start_date = NULL, $end_date = NULL, $group_by = NULL, $order_by = NULL, $service = NULL, $comeback = NULL, $actual_job = NULL, $crew = NULL, $client = NULL) {
+    public function __construct($label = NULL, $start_date = NULL, $end_date = NULL, $group_by = NULL, $order_by = NULL, $service = NULL, $comeback = NULL, $actual_job = NULL, $crew = NULL, $client = NULL, $area = NULL) {
         parent::__construct($start_date, $end_date);
         $this->start_date = $start_date;
         $this->end_date = $end_date;
@@ -234,16 +237,16 @@ class jobs extends report {
             $this->start_date = $start_date;
             $this->end_date = $end_date;
         }
-        $this->sql['date'] = "AND UNIX_TIMESTAMP(`date`) BETWEEN UNIX_TIMESTAMP('{$this->start_date}') AND UNIX_TIMESTAMP('{$this->end_date}')";
+        $this->sql['date'] = "AND UNIX_TIMESTAMP(date) BETWEEN UNIX_TIMESTAMP('{$this->start_date}') AND UNIX_TIMESTAMP('{$this->end_date}')";
 
         /**
          * Setting up filter comeback.
          */
         if ($comeback !== NULL && $comeback !== "*" && $this->comeback === NULL) {
             $this->comeback = $comeback;
-            $this->sql['comeback'] = "AND `comeback` = '". $this->comeback ."'";
+            $this->sql['comeback'] = "AND comeback = '". $this->comeback ."'";
         } elseif ($this->comeback !== NULL && $comeback !== "*") {
-            $this->sql['comeback'] = "AND `comeback` = '". $this->comeback ."'";
+            $this->sql['comeback'] = "AND comeback = '". $this->comeback ."'";
         }
 
         /**
@@ -251,7 +254,7 @@ class jobs extends report {
          */
         if ($service != NULL && $this->service == NULL) {
             $this->service = $service;
-            $this->sql['service'] = "AND `service` = '". $this->service."'";
+            $this->sql['service'] = "AND service = '". $this->service."'";
         }
 
         /**
@@ -260,9 +263,9 @@ class jobs extends report {
         if ($actual_job !== NULL && $this->actual_job === NULL) {
             $this->actual_job = $actual_job;
             if ($this->actual_job === TRUE) {
-                $this->sql['actual_job'] = "AND `actual_job` IS NOT NULL";
+                $this->sql['actual_job'] = "AND actual_job IS NOT NULL";
             } else {
-                $this->sql['actual_job'] = "AND `actual_job` IS NULL";
+                $this->sql['actual_job'] = "AND actual_job IS NULL";
             }
         }
 
@@ -271,9 +274,9 @@ class jobs extends report {
          */
         if ($crew !== NULL && $this->crew === NULL) {
             $this->crew = $crew;
-            if ($this->crew != "*") {
-                $this->sql['crew'] = "AND `crew_name` != '' AND `crew_name` = '{$crew}'";
-            }
+        }
+        if ($this->crew != "*" && $this->crew === NULL) {
+            $this->sql['crew'] = "AND crew_name != '' AND crew_name = '{$crew}'";
         }
 
         /**
@@ -281,9 +284,22 @@ class jobs extends report {
          */
         if ($client !== NULL && $this->client === NULL) {
             $this->client = $client;
-            if ($this->client != "*") {
-                $this->sql['client'] = "AND `client_name` != '' AND `client_name` = '{$client}'";
-            }
+        }
+        if ($this->client != "*" && $this->client !== NULL) {
+            $this->sql['client'] = "AND `client_name` != '' AND `client_name` = '{$client}'";
+        }
+
+        /**
+         * Setting up filter for areas
+         */
+        if ($area != NULL && $this->area === NULL) {
+            $this->area = $area;
+        }
+        if($this->area != "*" && $this->area !== NULL) {
+            $area_object = new clients();
+            $area_object->getClientsByArea($this->area['province'], "province");
+            $ids = implode(",", $area_object->client_ids);
+            $this->sql['province'] = "AND `client_name` != '' AND `client_id` IN ('{$ids}')";
         }
 
         /**
@@ -325,7 +341,7 @@ class jobs extends report {
                   `year_month`,
                   `month_day`,
                   `client_name`
-                FROM `jobs`
+                FROM jobs
                 WHERE 1";
 
         $this->master_query = "SELECT `date`, `crew_name`, `year`, `week_of_year`, `month`, `year_month`, `month_day`, `client_name`, COUNT(*) AS `count` FROM `jobs` WHERE 1 " . " " . $this->sql['date']. " " .$this->sql['group_by']. " " .$this->sql['order_by'];
@@ -410,6 +426,7 @@ class clients extends report {
     public $clients;
     public $query;
     public $select_html;
+    public $client_ids;
 
     public function __construct() {
         parent::__construct();
@@ -419,7 +436,7 @@ class clients extends report {
     }
 
     public function getClients () {
-        $this->query = "SELECT DISTINCT(`client_name`) AS `client_name` FROM `jobs` WHERE 1 ORDER BY `client_name` ASC";
+        $this->query = "SELECT DISTINCT(client_name) AS client_name FROM jobs WHERE 1 ORDER BY client_name ASC";
 
         if ($stmt = $this->dbcon->prepare($this->query)) {
             $stmt->execute();
@@ -428,6 +445,25 @@ class clients extends report {
             while ($stmt->fetch()) {
                 $this->clients[] = $client_name;
             }
+            $stmt->close();
+            return $this;
+        }
+        return FALSE;
+    }
+
+    public function getClientsByArea($area, $area_type = "province") {
+        if($area != "" && $this->province_id === NULL) {
+            $this->province_id = $area;
+        }
+        $sql = "SELECT `client_id` FROM `areas` WHERE `{$area_type}_id` = '{$this->province_id}'";
+        if ($stmt = $this->dbcon->prepare($sql)) {
+            $stmt->execute();
+            $stmt->bind_result($client_id);
+
+            while ($stmt->fetch()) {
+                $this->client_ids[] = $client_id;
+            }
+            $stmt->close();
             return $this;
         }
         return FALSE;
@@ -449,7 +485,7 @@ class crews extends report {
 
     public function getCrews() {
 
-        $this->query = "SELECT DISTINCT (`crew_name`) AS `crew_name` FROM `jobs` WHERE 1 ORDER BY `crew_name` ASC";
+        $this->query = "SELECT DISTINCT (crew_name) AS crew_name FROM jobs WHERE 1 ORDER BY crew_name ASC";
 
         if ($stmt = $this->dbcon->prepare($this->query)) {
             $stmt->execute();
@@ -458,6 +494,7 @@ class crews extends report {
             while ($stmt->fetch()) {
                 $this->crews[] = $crew_name;
             }
+            $stmt->close();
             return $this;
         }
         return FALSE;
@@ -496,38 +533,21 @@ class areas extends report {
         $this->area_type = $area_type;
         if(in_array($this->area_type, $this->area_types)) {
             $area_type_column_name = array_search($this->area_type, $this->area_types);
-            $sql = "SELECT DISTINCT(`{$area_type_column_name}`) AS `{$this->area_type}`, `{$area_type_column_name}_id` FROM `areas` WHERE 1 ORDER BY `{$area_type_column_name}`";
-
+            $sql = "SELECT GROUP_CONCAT(DISTINCT({$area_type_column_name}_id)) AS id, {$area_type_column_name} AS {$area_type_column_name} FROM areas WHERE {$area_type_column_name} != '' GROUP BY {$area_type_column_name}";
             if ($stmt = $this->dbcon->prepare($sql)) {
+                $this->dbcon->use_result();
                 $stmt->execute();
-                $stmt->bind_result($area_thing, $id);
+                $stmt->bind_result($id, $area_thing);
                 $give['*'] = "All";
                 while ($stmt->fetch()) {
                     $give[$id] = $area_thing;
                 }
+                $stmt->close();
                 $t = $this->area_type;
                 $this->$t = $give;
-                $stmt->close();
-
                 return $this;
             }
         }
         return FALSE;
     }
-
-    function getArea($area_id, $area_type) {
-        if(array_key_exists($area_type, $this->area_types)) {
-            $this->$area_type."_id";
-            $sql = "SELECT * FROM `areas` WHERE 1 AND `{$$area_type}_id` = '".$area_id."' LIMIT 1";
-
-            if ($stmt = $this->dbcon->prepare($sql)) {
-                $stmt->execute();
-                $stmt->bind_result($this->$area_type);
-                $this->area = $stmt->fetch_object();
-                return $this;
-            }
-        }
-        return FALSE;
-    }
-
 }

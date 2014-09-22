@@ -85,16 +85,13 @@ $report = new report();
 
     $areas = new areas();
     $areas->getAreas("provinces");
-    print $areas->buildSelect($areas->provinces, "Provinces");
+    print $areas->buildSelect($areas->provinces, "Provinces", NULL, TRUE);
 
     $areas->getAreas("regions");
-    print $areas->buildSelect($areas->regions, "Regions");
-
-    $areas->getAreas("sub_regions");
-    print $areas->buildSelect($areas->sub_regions, "Sub Regions");
+    print $areas->buildSelect($areas->regions, "Regions", NULL, TRUE);
 
     $areas->getAreas("suburbs");
-    print $areas->buildSelect($areas->suburbs, "Suburbs");
+    print $areas->buildSelect($areas->suburbs, "Suburbs", NULL, TRUE);
 
 
     ?>

@@ -14,9 +14,8 @@ $(function() {
 
         var compare = $("select[name='compare']").val();
 
-        var province = $("select[name='province']").val();
+        var province = $("select[name='provinces']").val();
         var region = $("select[name='region']").val();
-        var sub_region = $("select[name='sub_region']").val();
         var suburb = $("select[name='suburb']").val();
 
         if(from != "" && to != "") {
@@ -30,7 +29,6 @@ $(function() {
                     report_type: report_type,
                     province: province,
                     region: region,
-                    sub_region: sub_region,
                     suburb: suburb
             };
         } else {

@@ -6,10 +6,6 @@
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://localhost:3306/adhoc_adhocpanmv_db2</jdbc-url>
-      <user-name>root</user-name>
-      <user-password>dfcfdfc1dfc3dfd9dfdddfc3dfde</user-password>
-      <schema-pattern>adhoc_adhocpanmv_db2.*</schema-pattern>
-      <default-schemas>adhoc_adhocpanmv_db2.*</default-schemas>
       <driver-properties>
         <property name="zeroDateTimeBehavior" value="convertToNull" />
         <property name="tinyInt1isBit" value="false" />
