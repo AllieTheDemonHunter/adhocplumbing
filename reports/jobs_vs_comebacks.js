@@ -55,23 +55,23 @@ $(function() {
         console.log(data, data.title);
         success_crews(data.crews, data.selected_crew);
         success_clients(data.clients, data.selected_client);
-        print_chart(data.title, data.chart_id, data.jobs, data.x_label);
+        print_chart(data.title, data.chart_id, data.chart_data, data.x_label);
         $("svg#loader").fadeOut();
         $("#screen").fadeOut("slow");
     }
 
-    function print_chart(title, chart_id, data, x_label) {
+    function print_chart(title, chart_id, chart_data, x_label) {
         $("#container").prepend(title + '<div id="'+chart_id+'"></div>');
         var chart = c3.generate({
             bindto: '#' + chart_id,
             data: {
-                columns: data['values'],
+                columns: chart_data.values,
                 type: $("select[name='chart_types']").val()
             },
             axis: {
                 x: {
                     type: 'category',
-                    categories: data['names'],
+                    categories: chart_data.names,
                     label: x_label,
                     tick: {
                         rotate: 75

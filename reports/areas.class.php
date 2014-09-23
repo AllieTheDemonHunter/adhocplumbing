@@ -31,7 +31,7 @@ class areas extends reports {
     }
 
     public function __destruct() {
-        parent::__destruct();
+        $this->dbcon->close();
     }
 
     function getAreas($area_type) {
@@ -39,15 +39,12 @@ class areas extends reports {
         if(in_array($this->area_type, $this->area_types)) {
             $area_type_column_name = array_search($this->area_type, $this->area_types);
             $sql = "SELECT GROUP_CONCAT(DISTINCT({$area_type_column_name}_id)) AS id, {$area_type_column_name} AS {$area_type_column_name} FROM areas WHERE {$area_type_column_name} != '' GROUP BY {$area_type_column_name}";
-            if ($stmt = $this->dbcon->prepare($sql)) {
-                $this->dbcon->use_result();
-                $stmt->execute();
-                $stmt->bind_result($id, $area_thing);
+            if ($result = $this->dbcon->query($sql)) {
                 $give['*'] = "All";
-                while ($stmt->fetch()) {
-                    $give[$id] = $area_thing;
+                while ($fetched = $result->fetch_object()) {
+                    $give[$fetched->id] = $fetched->$area_type_column_name;
                 }
-                $stmt->close();
+                $result->close();
                 $t = $this->area_type;
                 $this->$t = $give;
                 return $this;

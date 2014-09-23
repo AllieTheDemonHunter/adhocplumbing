@@ -84,10 +84,10 @@ $report = new reports();
     $report->dbcon->close(); unset($report);
 
     $crews = new crews();
-    print $crews->getCrews()->buildSelect();
+    print $crews->buildSelect($crews->getCrews()->crews, "Crews");
 
     $clients = new clients();
-    print $clients->getClients()->buildSelect();
+    print $clients->buildSelect($clients->getClients()->clients, "Clients");
 
     $areas = new areas();
     print $areas->buildSelect($areas->getAreas("provinces")->provinces, "Provinces", NULL, TRUE);

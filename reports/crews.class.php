@@ -20,7 +20,7 @@ class crews extends reports {
 
     public function getCrews() {
 
-        $this->query = "SELECT DISTINCT (crew_name) AS crew_name FROM job WHERE 1 ORDER BY crew_name ASC";
+        $this->query = "SELECT DISTINCT (crew_name) AS crew_name FROM jobs WHERE 1 ORDER BY crew_name ASC";
 
         if ($result = $this->dbcon->query($this->query)) {
             $this->crews['*'] = 'All';
@@ -32,9 +32,5 @@ class crews extends reports {
             return $this;
         }
         return FALSE;
-    }
-
-    public function buildSelect() {
-        return parent::buildSelect($this->crews, "Crews");
     }
 }

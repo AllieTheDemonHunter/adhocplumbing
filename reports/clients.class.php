@@ -21,16 +21,15 @@ class clients extends reports {
     }
 
     public function getClients () {
-        $this->query = "SELECT DISTINCT(client_name) AS client_name FROM job WHERE 1 ORDER BY client_name ASC";
+        $this->query = "SELECT DISTINCT(client_name) AS client_name FROM jobs WHERE 1 ORDER BY client_name ASC";
 
-        if ($stmt = $this->dbcon->prepare($this->query)) {
-            $stmt->execute();
-            $stmt->bind_result($client_name);
+        if ($result = $this->dbcon->query($this->query)) {
             $this->clients['*'] = 'All';
-            while ($stmt->fetch()) {
-                $this->clients[] = $client_name;
+            while ($client_name = $result->fetch_object()) {
+                $this->clients[] = $client_name->client_name;
             }
-            $stmt->close();
+            $result->close();
+            $this->dbcon->close();
             return $this;
         }
         return FALSE;
@@ -40,21 +39,15 @@ class clients extends reports {
         if($area != "" && $this->province_id === NULL) {
             $this->province_id = $area;
         }
-        $sql = "SELECT `client_id` FROM `areas` WHERE `{$area_type}_id` = '{$this->province_id}'";
-        if ($stmt = $this->dbcon->prepare($sql)) {
-            $stmt->execute();
-            $stmt->bind_result($client_id);
-
-            while ($stmt->fetch()) {
-                $this->client_ids[] = $client_id;
+        $sql = "SELECT `client_id` AS `client_id` FROM `areas` WHERE `{$area_type}_id` = '{$this->province_id}'";
+        if ($result = $this->dbcon->query($sql)) {
+            while ($client_id = $result->fetch_object()) {
+                $this->client_ids[] = $client_id->client_id;
             }
-            $stmt->close();
+            $result->close();
+            $this->dbcon->close();
             return $this;
         }
         return FALSE;
-    }
-
-    public function buildSelect() {
-        return parent::buildSelect($this->clients, "Clients");
     }
 }

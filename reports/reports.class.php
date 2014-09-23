@@ -94,7 +94,7 @@ class reports {
      */
     public function getMinDate () {
         //Using the predefined view.
-        $sql = "SELECT MIN(date) AS min_date FROM job";
+        $sql = "SELECT MIN(date) AS min_date FROM jobs";
         if ($result = $this->dbcon->query($sql)) {
             $this->min_date = $result->fetch_object()->min_date;
             return $this;
