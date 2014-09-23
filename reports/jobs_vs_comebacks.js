@@ -45,7 +45,7 @@ $(function() {
 
     function getData(args) {
         var url = "reports/report_ajax.php";
-        var data = {action: "report", args: args};
+        var data = {action: "reports", args: args};
         $("svg#loader").fadeIn();
         //$(".c3").slideUp();
         $.post(url, data, get_data_success, "json");

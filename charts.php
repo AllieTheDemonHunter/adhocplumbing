@@ -4,8 +4,12 @@ if ($_COOKIE['MM_UserGroup'] < 5) {
 //	header(sprintf("Location: %s", $deniedGoTo));
 }
 require_once('inc_before.php');
-require_once ("reports/jobs.php");
-$report = new report();
+
+spl_autoload_register(function ($class) { //Requires > PHP 5.3.0
+    include 'reports/' . $class . '.class.php';
+});
+
+$report = new reports();
 
 ?>
 
@@ -77,6 +81,8 @@ $report = new report();
     print $report->chart_types_select_html;
     print $report->compare_types_select_html;
 
+    $report->dbcon->close(); unset($report);
+
     $crews = new crews();
     print $crews->getCrews()->buildSelect();
 
@@ -84,16 +90,9 @@ $report = new report();
     print $clients->getClients()->buildSelect();
 
     $areas = new areas();
-    $areas->getAreas("provinces");
-    print $areas->buildSelect($areas->provinces, "Provinces", NULL, TRUE);
-
-    $areas->getAreas("regions");
-    print $areas->buildSelect($areas->regions, "Regions", NULL, TRUE);
-
-    $areas->getAreas("suburbs");
-    print $areas->buildSelect($areas->suburbs, "Suburbs", NULL, TRUE);
-
-
+    print $areas->buildSelect($areas->getAreas("provinces")->provinces, "Provinces", NULL, TRUE);
+    print $areas->buildSelect($areas->getAreas("regions")->regions, "Regions", NULL, TRUE);
+    print $areas->buildSelect($areas->getAreas("suburbs")->suburbs, "Suburbs", NULL, TRUE);
     ?>
 </div>
 <script type="text/javascript">

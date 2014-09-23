@@ -6,11 +6,14 @@
  * Time: 10:36 AM
  */
 
-require_once 'jobs.php';
+spl_autoload_register(function ($class) { //Requires > PHP 5.3.0
+    include $class . '.class.php';
+});
+
 $incoming = $_POST['args'];
-if($_POST['action'] == "report") {
+if($_POST['action'] == "reports") {
     //Report
-    $report = new report();
+    $report = new reports();
 
     //Type
     $title['report_type'] = "<b>Report Type:</b> ".$report->makeFriendlyName($incoming['report_type']);
@@ -48,55 +51,62 @@ if($_POST['action'] == "report") {
             $group = "crew_name";
             switch ($compare) {
                 case "actual_job":
-                    $jobs[] = new jobs('Same', $start_date, $end_date, $group, NULL, NULL, NULL, TRUE, $crew, $client, $area);
-                    $jobs[] = new jobs('Different', $start_date, $end_date, $group, NULL, NULL, NULL, FALSE, $crew, $client, $area);
+                    $jobs[] = new job('Same', $start_date, $end_date, $group, NULL, NULL, NULL, TRUE, $crew, $client, $area);
+                    $jobs[] = new job('Different', $start_date, $end_date, $group, NULL, NULL, NULL, FALSE, $crew, $client, $area);
                     break;
                 case "comeback":
-                    $jobs[] = new jobs('Comebacks', $start_date, $end_date, $group, NULL, NULL, 'comeback', NULL, $crew, $client, $area);
-                    $jobs[] = new jobs('Good Jobs', $start_date, $end_date, $group, NULL, NULL, 'good', NULL, $crew, $client, $area);
+                    $jobs[] = new job('Comebacks', $start_date, $end_date, $group, NULL, NULL, 'comeback', NULL, $crew, $client, $area);
+                    $jobs[] = new job('Good Jobs', $start_date, $end_date, $group, NULL, NULL, 'good', NULL, $crew, $client, $area);
                     break;
             }
-            //Always include all jobs with crew and client filter
-            $jobs[] = new jobs('All Jobs', $start_date, $end_date, $group, NULL, NULL, NULL, NULL, $crew, $client, $area);
+            //Always include all job with crew and client filter
+            $jobs[] = new job('All Jobs', $start_date, $end_date, $group, NULL, NULL, NULL, NULL, $crew, $client, $area);
             break;
         case "jobs_over_time":
             $group = $incoming['date_granularity'];
 
             switch ($compare) {
                 case "actual_job":
-                    $jobs[] = new jobs('Same', $start_date, $end_date, $group, NULL, NULL, NULL, TRUE, $crew, $client, $area);
-                    $jobs[] = new jobs('Different', $start_date, $end_date, $group, NULL, NULL, NULL, FALSE, $crew, $client, $area);
+                    $jobs[] = new job('Same', $start_date, $end_date, $group, NULL, NULL, NULL, TRUE, $crew, $client, $area);
+                    $jobs[] = new job('Different', $start_date, $end_date, $group, NULL, NULL, NULL, FALSE, $crew, $client, $area);
                     break;
                 case "comeback":
-                    $jobs[] = new jobs('Comebacks', $start_date, $end_date, $group, NULL, NULL, 'comeback', NULL, $crew, $client, $area);
-                    $jobs[] = new jobs('Good Jobs', $start_date, $end_date, $group, NULL, NULL, 'good', NULL, $crew, $client, $area);
+                    $jobs[] = new job('Comebacks', $start_date, $end_date, $group, NULL, NULL, 'comeback', NULL, $crew, $client, $area);
+                    $jobs[] = new job('Good Jobs', $start_date, $end_date, $group, NULL, NULL, 'good', NULL, $crew, $client, $area);
                     break;
             }
-            //Always include all jobs with crew and client filter
-            $jobs[] = new jobs('All Jobs', $start_date, $end_date, $group, NULL, NULL, NULL, NULL, $crew, $client, $area);
+            //Always include all job with crew and client filter
+            $jobs[] = new job('All Jobs', $start_date, $end_date, $group, NULL, NULL, NULL, NULL, $crew, $client, $area);
             break;
         case "jobs_in_area":
-            $group = "client_name";
-            $jobs[] = new jobs('All Jobs', $start_date, $end_date, $group, NULL, NULL, NULL, NULL, $crew, $client, NULL);
-            $jobs[] = new jobs('All Jdfdsobs', $start_date, $end_date, $group, NULL, NULL, NULL, NULL, $crew, $client, $area);
+            $group = "province";
+            $view = "job_area";
+            $jobs[] = new job('All Jobs', $start_date, $end_date, $group, NULL, NULL, NULL, NULL, $crew, $client, NULL);
+            $jobs[] = new job('Province', $start_date, $end_date, $group, NULL, NULL, NULL, NULL, $crew, $client, $area);
             break;
     }
-
-
+    if($view == "") {
+        $view = "job";
+    }
+    $view = "job_area";
     foreach($jobs as $object) {
-        $object->getJobs()->formatData();
+        $object->getJobs($view)->formatData();
         $data['values'][] = $object->formatted_data['values'];
         $data['names'] = $object->formatted_data['names'];
+        unset($object);
     }
 
+    unset($jobs);
+
     //Crews
-    $new_crews = new jobs('All Jobs', $start_date, $end_date, 'crew_name', NULL, NULL, NULL, NULL, $crew, $client);
+    $new_crews = new job('All Jobs', $start_date, $end_date, 'crew_name', NULL, NULL, NULL, NULL, $crew, $client);
     $crews = $new_crews->getJobs();
+    unset($new_crews);
 
     //Clients
-    $new_clients = new jobs('All Jobs', $start_date, $end_date, 'client_name', NULL, NULL, NULL, NULL, $crew, $client);
+    $new_clients = new job('All Jobs', $start_date, $end_date, 'client_name', NULL, NULL, NULL, NULL, $crew, $client);
     $clients = $new_clients->getJobs();
-
+    unset($new_clients);
     sleep(1);
 
     foreach($title as $machine_name => $friendly_name) {
@@ -113,7 +123,7 @@ if($_POST['action'] == "report") {
         "title" => $title,
         "x_label" => $x_label,
         "chart_id" => $chart_id,
-        "jobs" => $data,
+        "job" => $data,
         "crews" => $crews->jobs,
         "selected_crew" => $crew,
         "selected_client" => $client,
