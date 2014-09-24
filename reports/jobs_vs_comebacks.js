@@ -1,6 +1,7 @@
 /**
  * Created by allie on 2014/09/16.
  */
+//"use strict";
 $(function() {
     function check_requirements() {
         var from = $( "#from").val();
@@ -91,6 +92,7 @@ $(function() {
             },
             transition: { duration: 2000 }
         });
+        print_table(title, chart_data);
     }
 
     $( "#from" ).datepicker({
@@ -169,15 +171,26 @@ $(function() {
         }
     }
 
-    $('#container1')
-        .TidyTable({
-            columnTitles : ['Column A','Column B','Column C','Column D','Column E','Column F'],
-            columnValues : [
-                ['1','1A','1B','1C','1D','1E'],
-                ['2','2A','2B','2C','2D','2E'],
-                ['3','3A','3B','3C','3D','3E'],
-                ['4','4A','4B','4C','4D','4E'],
-                ['5','5A','5B','5C','5D','5E']
-            ]
-        });
+    function print_table(title, table_data) {
+        var column_names = new Array('Date');
+        var values = table_data.values;
+        for(z = 0; z < values.length; ++z) {
+            column_names.push(values[z][0]);
+        }
+        var rows = new Array;
+        for(x = 0; x < (values[0].length-1); ++x) {
+            var name = table_data.names.shift();
+            var row = new Array(name);
+            for(a = 0; a < (values.length); ++a) {
+                row.push(values[a][(x+1)]);
+            }
+            rows.push(row);
+        }
+
+        $('#container1')
+            .TidyTable({
+                columnTitles : column_names,
+                columnValues : rows
+            });
+        };
 });

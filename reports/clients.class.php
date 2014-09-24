@@ -21,7 +21,7 @@ class clients extends reports {
     }
 
     public function getClients () {
-        $this->query = "SELECT DISTINCT(client_name) AS client_name FROM jobs WHERE 1 ORDER BY client_name ASC";
+        $this->query = "SELECT DISTINCT(client_name) AS client_name FROM job WHERE 1 ORDER BY client_name ASC";
 
         if ($result = $this->dbcon->query($this->query)) {
             $this->clients['*'] = 'All';

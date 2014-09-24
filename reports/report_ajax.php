@@ -44,63 +44,56 @@ if($_POST['action'] == "reports") {
     //Compare
     $compare = $incoming['compare'];
     $title['compare'] = "<b>Comparing:</b> ".$report->makeFriendlyName($compare);
-
+    $report_instance = new chart_config($_POST);
     switch ($incoming['report_type']) {
         case "jobs_per_crew":
-            $group = "crew_name";
-            switch ($compare) {
-                case "actual_job":
-                    $jobs[] = new jobs($_POST);
-                    $jobs[] = new jobs($_POST);
-                    break;
-                case "comeback":
-                    $jobs[] = new jobs($_POST);
-                    $jobs[] = new jobs($_POST);
-                    break;
-            }
-            //Always include all jobs with crew and client filter
-            $jobs[] = new jobs($_POST);
+            $report_instance->group_by = "crew_name";
             break;
         case "jobs_over_time":
-            $group = $incoming['date_granularity'];
-
-            switch ($compare) {
-                case "actual_job":
-                    $jobs[] = new jobs("Same", $_POST);
-                    $jobs[] = new jobs("Different", $_POST);
-                    break;
-                case "comeback":
-                    $jobs[] = new jobs($_POST);
-                    $jobs[] = new jobs($_POST);
-                    break;
-            }
-            //Always include all jobs with crew and client filter
-            $jobs[] = new jobs("All", $_POST);
+            $report_instance->group_by = $incoming['date_granularity'];
             break;
         case "jobs_in_area":
-            $group = "province";
-            $view = "job_area";
-            $jobs[] = new jobs($_POST);
-            $jobs[] = new jobs($_POST);
+            $report_instance->group_by = "province";
             break;
     }
-    if($view == "") {
-        $view = "jobs";
+    switch ($compare) {
+        case "actual_job":
+            $jobs[] = $report_instance->actualJob('same');
+            $jobs[] = $report_instance->actualJob('different');
+            break;
+        case "comeback":
+            $jobs[] = $report_instance->comeback("good");
+            $jobs[] = $report_instance->comeback("comeback");
+            break;
     }
-    $view = "job_area";
+
+    /**
+     * All
+     * - Uses $report_instance
+     * -- In order to inherit the above contextual filters.
+     */
+    $jobs[] = $report_instance->all();
+
     foreach($jobs as $object) {
-        $object->getJobs($view)->formatData();
+        $object->getJobs()->formatData();
         $data['values'][] = $object->formatted_data['values'];
-        $data['names'] = $object->formatted_data['names'];
+        $data['names'] = $object->formatted_data['names']; //names has one extra value at 0 - this is for the graphs.
     }
 
-    //Crews
-    $new_crews = new jobs("crews",$_POST);
-    $crews = $new_crews->getJobs();
+    /**
+     * Running an audit here to remove/exclude entries.
+     * which have all their variants at zero.
+     *
+     * I don't think they're useful and should be omitted.
+     */
+    // Too lazy to attempt this right now.
 
-    //Clients
-    $new_clients = new jobs("clients", $_POST);
-    $clients = $new_clients->getJobs();
+    /**
+     * Always-applicable filters
+     * - These must use all of the filters above.
+     */
+    $crews = $report_instance->getCrews()->getJobs()->job;
+    $clients = $report_instance->getClients()->getJobs()->job;
 
     foreach($title as $machine_name => $friendly_name) {
         $title_compiled .= '<div id="title-'.$machine_name.'">'.$friendly_name.'</div>';
@@ -117,9 +110,9 @@ if($_POST['action'] == "reports") {
         "x_label" => $x_label,
         "chart_id" => $chart_id,
         "chart_data" => $data,
-        "crews" => $crews->job_values,
+        "crews" => $crews,
         "selected_crew" => $crew,
         "selected_client" => $client,
-        "clients" => $clients->job_values,
-        "debug" => $jobs));
+        "clients" => $clients,
+        "debug" => null));
 }

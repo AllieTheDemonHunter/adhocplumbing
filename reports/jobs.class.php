@@ -11,7 +11,7 @@ class jobs extends reports {
     public $start_date;
     public $end_date;
     public $view = 'job_area';
-    public $group_by = 'date';
+    public $group_by;
     public $order_by;
     public $comeback = NULL; //All jobs.
     public $service = NULL; //All jobs.
@@ -30,8 +30,8 @@ class jobs extends reports {
     public $client;
     public $area = NULL;
 
-    public function __construct($label, $args) {
-        foreach ($args['args'] as $arg => $val) {
+    public function __construct($label = NULL, $args) {
+        foreach ($args as $arg => $val) {
             $this->$arg = $val;
         }
 
@@ -40,10 +40,13 @@ class jobs extends reports {
         /**
          * Setting up the label.
          */
+        if($this->label == "" && $label !== NULL) {
+            $this->label = $label;
+        }
 
-        $this->label = $label;
-
-
+        /**
+         * Always applicable.
+         */
         $this->sql['date'] = "AND UNIX_TIMESTAMP(date) BETWEEN UNIX_TIMESTAMP('{$this->start_date}') AND UNIX_TIMESTAMP('{$this->end_date}')";
 
         /**
@@ -63,10 +66,10 @@ class jobs extends reports {
         /**
          * Setting up filter actual_job.
          */
-        if ($this->actual_job != "*" && $this->actual_job !== NULL) {
-            if ($this->actual_job == 'same') {
+        if ($this->actual_job != "*") {
+            if ($this->actual_job === "same") {
                 $this->sql['actual_job'] = "AND actual_job IS NOT NULL";
-            } else {
+            } elseif($this->actual_job === "different") {
                 $this->sql['actual_job'] = "AND actual_job IS NULL";
             }
         }
@@ -88,7 +91,7 @@ class jobs extends reports {
         /**
          * Setting up filter for provinces
          */
-        if($this->province != "*") {
+        if($this->province != "*" && $this->province !== NULL) {
             $this->sql['province'] = "AND `province_id` != '' AND `province_id` = '{$this->province}'";
         }
 
@@ -138,7 +141,6 @@ class jobs extends reports {
                 $key = $template_row->$key_name;
                 $this->job_template[$key] = $template_row;
             }
-            $result->close();
         }
 
         if ($result = $this->dbcon->query($this->query)) {
@@ -147,28 +149,35 @@ class jobs extends reports {
                 $key = $result_row->$key_name;
                 $this->job_values[$key] = $result_row;
             }
-            $result->close();
+
         }
 
-        $this->job = new job();
-        foreach($this->job_template as $template_key => $template_value) {
-            if($this->job_values[$template_key]) {
-                $this->job->$template_key = $this->job_values->$template_key;
-            } else {
-                $this->job->$template_key = $template_value;
+        if(is_array($this->job_template) && count($this->job_template) > 0) {
+            $this->job = new job();
+
+            foreach($this->job_template as $template_key => $template_value) {
+                if($this->job_values[$template_key]) {
+                    $this->job->$template_key = $this->job_values[$template_key];
+                } else {
+                    $this->job->$template_key = $template_value;
+                }
             }
         }
-
         return $this;
     }
 
     public function formatData() {
+        if(isset($this->job->count)) {
+            unset($this->job->count);
+        }
         $this->formatted_data['names'] = array_keys(get_object_vars($this->job));
         $this->formatted_data['values'][] = $this->label;
-        foreach($this->job_values as $job_group) {
-            $this->formatted_data['values'][] = $job_group->count;
+        if(is_object($this->job)) {
+            foreach($this->job as $job_group) {
+                $this->formatted_data['values'][] = $job_group->count;
+            }
+            return $this;
         }
-        return $this;
     }
 
 }
