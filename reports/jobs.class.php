@@ -92,7 +92,14 @@ class jobs extends reports {
          * Setting up filter for provinces
          */
         if($this->province != "*" && $this->province !== NULL) {
-            $this->sql['province'] = "AND `province_id` != '' AND `province_id` = '{$this->province}'";
+            $this->sql['province'] = "AND `province_id` != '' AND `province` = '{$this->province}'";
+        }
+
+        /**
+         * Setting up filter for regions
+         */
+        if($this->region != "*" && $this->region !== NULL) {
+            $this->sql['region'] = "AND `region_id` != '' AND `region` = '{$this->region}'";
         }
 
         /**
@@ -126,11 +133,13 @@ class jobs extends reports {
                   `year_month`,
                   `month_day`,
                   `client_name`,
-                  `province`
+                  `province`,
+                  `region`,
+                  `condition`
                 FROM {$this->view}
                 WHERE 1";
 
-        $this->master_query = "SELECT `date`, `crew_name`, `year`, `week_of_year`, `month`, `year_month`, `month_day`, `client_name`, '0' AS `count`, `province` AS `province` FROM `{$this->view}` WHERE 1 " . " " . $this->sql['date']. " " .$this->sql['group_by']. " " .$this->sql['order_by'];
+        $this->master_query = "SELECT `date`, `crew_name`, `year`, `week_of_year`, `month`, `year_month`, `month_day`, `client_name`, '0' AS `count`, `province` AS `province`, `region` AS `region`, `condition` AS `condition` FROM `{$this->view}` WHERE 1 " . " " . $this->sql['date']. " " .$this->sql['group_by']. " " .$this->sql['order_by'];
         foreach ($this->sql as $directive) {
             $this->query .= " ".$directive;
         }

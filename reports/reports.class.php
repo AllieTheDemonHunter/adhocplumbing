@@ -38,7 +38,7 @@ class reports {
     }
 
     public function __destruct() {
-
+        //$this->dbcon->close();
     }
 
     public function formatData ($data, $return = 'names') {
@@ -177,7 +177,9 @@ MARKUP;
         $report_types = array(
             "jobs_over_time",
             "jobs_per_crew",
-            "jobs_in_area"
+            "jobs_in_province",
+            "jobs_in_region",
+            "jobs_per_job_type"
         );
         foreach ($report_types as $machine_name) {
             $this->report_types[$machine_name] = $this->makeFriendlyName($machine_name);

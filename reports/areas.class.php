@@ -42,7 +42,7 @@ class areas extends reports {
             if ($result = $this->dbcon->query($sql)) {
                 $give['*'] = "All";
                 while ($fetched = $result->fetch_object()) {
-                    $give[$fetched->id] = $fetched->$area_type_column_name;
+                    $give[$fetched->$area_type_column_name] = $fetched->$area_type_column_name;
                 }
                 $result->close();
                 $t = $this->area_type;

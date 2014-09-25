@@ -41,9 +41,20 @@ if($_POST['action'] == "reports") {
         $title['province'] = "<b>Filtering by Province</b> ";
     }
 
+    //Region
+    $region = $incoming['region'];
+    if($region != "*" && $region != "") {
+        $title['region'] = "<b>Filtering by Region</b> ";
+    }
+
     //Compare
     $compare = $incoming['compare'];
     $title['compare'] = "<b>Comparing:</b> ".$report->makeFriendlyName($compare);
+
+    /**
+     * The main entry point into most job questions.
+     * Uses chart_config as interface.
+     */
     $report_instance = new chart_config($_POST);
     switch ($incoming['report_type']) {
         case "jobs_per_crew":
@@ -52,8 +63,14 @@ if($_POST['action'] == "reports") {
         case "jobs_over_time":
             $report_instance->group_by = $incoming['date_granularity'];
             break;
-        case "jobs_in_area":
+        case "jobs_in_province":
             $report_instance->group_by = "province";
+            break;
+        case "jobs_in_region":
+            $report_instance->group_by = "region";
+            break;
+        case "jobs_per_job_type":
+            $report_instance->group_by = "condition";
             break;
     }
     switch ($compare) {
@@ -94,6 +111,8 @@ if($_POST['action'] == "reports") {
      */
     $crews = $report_instance->getCrews()->getJobs()->job;
     $clients = $report_instance->getClients()->getJobs()->job;
+    $provinces = $report_instance->getProvinces()->getJobs()->job;
+    $regions = $report_instance->getRegions()->getJobs()->job;
 
     foreach($title as $machine_name => $friendly_name) {
         $title_compiled .= '<div id="title-'.$machine_name.'">'.$friendly_name.'</div>';
@@ -113,6 +132,10 @@ if($_POST['action'] == "reports") {
         "crews" => $crews,
         "selected_crew" => $crew,
         "selected_client" => $client,
+        "selected_province" => $province,
+        "selected_region" => $region,
         "clients" => $clients,
-        "debug" => null));
+        "provinces" => $provinces,
+        "regions" => $regions,
+        "debug-jobs" => $jobs));
 }

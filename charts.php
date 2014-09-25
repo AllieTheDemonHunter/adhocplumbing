@@ -92,7 +92,6 @@ $report = new reports();
     $areas = new areas();
     print $areas->buildSelect($areas->getAreas("provinces")->provinces, "Provinces", NULL, TRUE);
     print $areas->buildSelect($areas->getAreas("regions")->regions, "Regions", NULL, TRUE);
-    print $areas->buildSelect($areas->getAreas("suburbs")->suburbs, "Suburbs", NULL, TRUE);
     ?>
 </div>
 <script type="text/javascript">

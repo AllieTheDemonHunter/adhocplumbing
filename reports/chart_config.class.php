@@ -76,4 +76,16 @@ class chart_config {
         $this->group_by = "client_name";
         return $this->provideData();
     }
+
+    public function getProvinces() {
+        $this->label = 'provinces'; //Not used but required.
+        $this->group_by = "province";
+        return $this->provideData();
+    }
+
+    public function getRegions() {
+        $this->label = 'regions'; //Not used but required.
+        $this->group_by = "region";
+        return $this->provideData();
+    }
 } 
